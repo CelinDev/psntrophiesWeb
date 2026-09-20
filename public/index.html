@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <link rel="icon" href="psntrophies.png" type="image/x-icon">
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>PSN Trophies</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <header>
+    <div class="logo-container">
+        <img src="/psntrophies.png" alt="PSN Trophies Logo" class="brand-logo">
+        <div class="logo-text">
+            <h1>PSN Trophies</h1>
+            <p>Meu perfil de troféus</p>
+        </div>
+    </div>
+
+    <!-- BOTÃO DARK/LIGHT MODE -->
+    <button id="theme-toggle" class="theme-toggle-btn" aria-label="Alternar Tema">
+        <span id="theme-icon">🌙</span>
+    </button>
+</header>
+
+
+    <main class="container">
+
+    <!-- BARRA DE BUSCA DE JOGADORES -->
+        <!-- BARRA DE BUSCA E SINCRONIZAÇÃO -->
+        <section class="search-section">
+            <form id="search-form" class="search-form">
+                <input 
+                    type="text" 
+                    id="search-input" 
+                    placeholder="Digite a PSN ID (ex: Lz__98)..." 
+                    autocomplete="off"
+                >
+                <button type="submit" class="search-btn">🔍 Buscar</button>
+                <button type="button" id="sync-btn" class="sync-btn" title="Atualizar dados agora">🔄 Sincronizar</button>
+                <button type="button" id="reset-search-btn" class="reset-search-btn" style="display: none;">Minha Conta</button>
+            </form>
+            <div id="searched-user-banner" class="user-banner" style="display: none;"></div>
+        </section>
+        <!-- ========================= -->
+        <!-- ESTATÍSTICAS -->
+        <!-- ========================= -->
+
+        <section class="stats">
+
+            <!-- TOTAL TROFÉUS -->
+            <div class="stat-card">
+                <div class="number" id="total-trophies">0</div>
+                <div class="label">
+                    <span class="stat-icon">🏆</span>
+                    <span>Troféus</span>
+                </div>
+            </div>
+
+            <!-- PLATINAS -->
+            <div class="stat-card platinum-card">
+                <div class="number" id="total-platinum">0</div>
+                <div class="label">
+                    <img src="/platinum.png" alt="Platina" class="stat-icon">
+                    <span>Platinas</span>
+                </div>
+            </div>
+
+            <!-- OURO -->
+            <div class="stat-card gold-card">
+                <div class="number" id="total-gold">0</div>
+                <div class="label">
+                    <img src="/gold.png" alt="Ouro" class="stat-icon">
+                    <span>Ouro</span>
+                </div>
+            </div>
+
+            <!-- PRATA -->
+            <div class="stat-card silver-card">
+                <div class="number" id="total-silver">0</div>
+                <div class="label">
+                    <img src="/silver.png" alt="Prata" class="stat-icon">
+                    <span>Prata</span>
+                </div>
+            </div>
+
+            <!-- BRONZE -->
+            <div class="stat-card bronze-card">
+                <div class="number" id="total-bronze">0</div>
+                <div class="label">
+                    <img src="/bronze.png" alt="Bronze" class="stat-icon">
+                    <span>Bronze</span>
+                </div>
+            </div>
+
+        </section>
+
+
+
+ <!-- ========================= -->
+        <!-- JOGOS -->
+        <!-- ========================= -->
+
+        <div class="games-header-bar">
+            <h2 class="games-title">Meus Jogos</h2>
+            
+            <div class="sort-control">
+                <label for="sort-select">Ordenar por:</label>
+                <select id="sort-select" class="sort-select">
+                    <option value="default">Padrão PSN (Recentes)</option>
+                    <option value="progress-desc">Maior Progresso (100% → 0%)</option>
+                    <option value="progress-asc">Menor Progresso (0% → 100%)</option>
+                    <option value="name-asc">Nome (A - Z)</option>
+                    <option value="name-desc">Nome (Z - A)</option>
+                    <option value="platinum-first">Apenas Platinados / Platinas Primeiro</option>
+                </select>
+            </div>
+        </div>
+
+        <section
+            class="games"
+            id="games"
+        >
+        </section>
+
+
+    </main>
+
+
+
+    <script src="script.js"></script>
+
+    <!-- ======================================== -->
+    <!-- MODAL / POP-UP DE DETALHES DO JOGO -->
+    <!-- ======================================== -->
+    <div id="game-modal" class="modal-overlay">
+        <div class="modal-container">
+            <button id="modal-close-btn" class="modal-close" aria-label="Fechar">&times;</button>
+
+            <!-- CONTEÚDO DO POP-UP -->
+            <div id="modal-content">
+                <!-- CARD HERO DA PLATINA -->
+                <div id="platinum-badge-card" class="platinum-hero-card not-earned">
+                    <div class="platinum-icon-wrapper">
+                        <img src="/platinum.png" alt="Platina" class="trophy-plat-img">
+                    </div>
+                    <div class="platinum-status-text" id="platinum-status-text">CARREGANDO...</div>
+                </div>
+
+                <!-- ESTATÍSTICAS DO JOGO -->
+                <!-- ESTATÍSTICAS DO JOGO (PIRÂMIDE INVERTIDA) -->
+                <section class="game-stats-pyramid">
+                    <!-- LINHA 1: OS 3 TROFÉUS -->
+                    <div class="stats-row top-row">
+                        <div class="stat-card gold-card">
+                            <div class="number" id="stat-gold">0</div>
+                            <div class="label">🥇 Ouro</div>
+                        </div>
+                        <div class="stat-card silver-card">
+                            <div class="number" id="stat-silver">0</div>
+                            <div class="label">🥈 Prata</div>
+                        </div>
+                        <div class="stat-card bronze-card">
+                            <div class="number" id="stat-bronze">0</div>
+                            <div class="label">🥉 Bronze</div>
+                        </div>
+                    </div>
+
+                    <!-- LINHA 2: PROGRESSO E CONQUISTADOS (CENTRALIZADOS) -->
+                    <div class="stats-row bottom-row">
+                        <div class="stat-card">
+                            <div class="number" id="game-progress">0%</div>
+                            <div class="label">Progresso</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="number" id="game-earned">0/0</div>
+                            <div class="label">Conquistados</div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- FILTROS -->
+                <div class="filters-container">
+                    <button class="filter-btn active" data-filter="all">Todos</button>
+                    <button class="filter-btn" data-filter="missing">Faltam Conquistar</button>
+                    <button class="filter-btn" data-filter="earned">Já Conquistados</button>
+                </div>
+
+                <!-- LISTA DE TROFÉUS -->
+                <section id="trophies-list" class="trophies-list">
+                    <p class="loading">Carregando lista de troféus...</p>
+                </section>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

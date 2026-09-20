@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Jogo - PSN Trophies</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <header>
+        <a href="/" class="back-link">← Voltar para Todos os Jogos</a>
+        <h1>Detalhes do Jogo</h1>
+    </header>
+
+    <main class="container">
+        <!-- CARD HERO CENTRALIZADO DA PLATINA -->
+        <div id="platinum-badge-card" class="platinum-hero-card not-earned">
+            <div class="platinum-icon-wrapper">
+                <img src="/platinum.png" alt="Troféu de Platina" class="trophy-plat-img">
+            </div>
+            <div class="platinum-status-text" id="platinum-status-text">CARREGANDO...</div>
+        </div>
+
+        <!-- ESTATÍSTICAS REORGANIZADAS -->
+        <section class="stats game-stats">
+            <div class="stat-card">
+                <div class="number" id="game-progress">0%</div>
+                <div class="label">Progresso</div>
+            </div>
+            <div class="stat-card">
+                <div class="number" id="game-earned">0/0</div>
+                <div class="label">Conquistados</div>
+            </div>
+            <div class="stat-card gold-card">
+                <div class="number" id="stat-gold">0</div>
+                <div class="label">🥇 Ouro</div>
+            </div>
+            <div class="stat-card silver-card">
+                <div class="number" id="stat-silver">0</div>
+                <div class="label">🥈 Prata</div>
+            </div>
+            <div class="stat-card bronze-card">
+                <div class="number" id="stat-bronze">0</div>
+                <div class="label">🥉 Bronze</div>
+            </div>
+        </section>
+
+        <!-- FILTROS -->
+        <div class="filters-container">
+            <button class="filter-btn active" data-filter="all">Todos</button>
+            <button class="filter-btn" data-filter="missing">Faltam Conquistar</button>
+            <button class="filter-btn" data-filter="earned">Já Conquistados</button>
+        </div>
+
+        <!-- LISTA DE TROFÉUS -->
+        <section id="trophies-list" class="trophies-list">
+            <p class="loading">Carregando lista de troféus...</p>
+        </section>
+    </main>
+
+    <script src="/game.js"></script>
+</body>
+</html>
